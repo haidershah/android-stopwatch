@@ -15,11 +15,15 @@ class StopwatchViewModel : ViewModel() {
     private val _btnText = MutableLiveData<Int>()
     val btnText: LiveData<Int> = _btnText
 
+    private val _isResetBtnEnabled = MutableLiveData<Boolean>()
+    val isResetBtnEnabled: LiveData<Boolean> = _isResetBtnEnabled
+
     private lateinit var job: Job
 
     init {
         _btnText.value = R.string.start
         _timeElapsed.value = 0
+        _isResetBtnEnabled.value = false
     }
 
     fun startStopStopwatch() {
@@ -32,6 +36,8 @@ class StopwatchViewModel : ViewModel() {
 
     private fun startTimer() {
         _btnText.value = R.string.stop
+        _isResetBtnEnabled.value = true
+
         job = Job()
         viewModelScope.launch {
 
@@ -48,11 +54,13 @@ class StopwatchViewModel : ViewModel() {
 
     private fun stopTimer() {
         _btnText.value = R.string.start
+
         job.cancel()
     }
 
     fun reset() {
         _btnText.value = R.string.start
+        _isResetBtnEnabled.value = false
         _timeElapsed.value = 0
 
         if (::job.isInitialized && job.isActive) {
