@@ -3,7 +3,6 @@ package com.example.stopwatch.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.stopwatch.R
 import com.example.stopwatch.databinding.ActivityMainBinding
@@ -27,6 +26,6 @@ class MainActivity : AppCompatActivity(), StopwatchListener {
     }
 
     override fun onStartStopwatchClicked() {
-        viewModel.startStopwatch()
+        viewModel.startStopStopwatch()
     }
 }
