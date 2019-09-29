@@ -7,4 +7,7 @@
     <string name="stop">Stop</string>
 
     <string name="reset">Reset</string>
+
+    <string name="saved_time_elapsed">saved_time_elapsed</string>
+    <string name="is_stopwatch_started">is_stopwatch_started</string>
 </resources>

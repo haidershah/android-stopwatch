@@ -7,23 +7,34 @@ import androidx.lifecycle.viewModelScope
 import com.example.stopwatch.R
 import kotlinx.coroutines.*
 
-class StopwatchViewModel : ViewModel() {
+class StopwatchViewModel(savedTimeElapsed: Int, isStopwatchStarted: Boolean) : ViewModel() {
 
     private val _timeElapsed = MutableLiveData<Int>()
-    val timeElapsed: LiveData<Int> = _timeElapsed
+    val timeElapsed: LiveData<Int> get() = _timeElapsed
 
     private val _btnText = MutableLiveData<Int>()
-    val btnText: LiveData<Int> = _btnText
+    val btnText: LiveData<Int> get() = _btnText
 
     private val _isResetBtnEnabled = MutableLiveData<Boolean>()
-    val isResetBtnEnabled: LiveData<Boolean> = _isResetBtnEnabled
+    val isResetBtnEnabled: LiveData<Boolean> get() = _isResetBtnEnabled
 
     private lateinit var job: Job
 
     init {
-        _btnText.value = R.string.start
-        _timeElapsed.value = 0
-        _isResetBtnEnabled.value = false
+        if (savedTimeElapsed > 0) {
+            _timeElapsed.value = savedTimeElapsed
+            _isResetBtnEnabled.value = true
+
+            if (isStopwatchStarted) {
+                startTimer()
+            } else {
+                _btnText.value = R.string.start
+            }
+        } else {
+            _btnText.value = R.string.start
+            _timeElapsed.value = 0
+            _isResetBtnEnabled.value = false
+        }
     }
 
     fun startStopStopwatch() {
@@ -42,7 +53,6 @@ class StopwatchViewModel : ViewModel() {
         viewModelScope.launch {
 
             while (true) {
-
                 withContext(Dispatchers.IO + job) {
                     delay(1_000)
                 }
