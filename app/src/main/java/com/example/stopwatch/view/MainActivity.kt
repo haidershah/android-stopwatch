@@ -28,4 +28,8 @@ class MainActivity : AppCompatActivity(), StopwatchListener {
     override fun onStartStopwatchClicked() {
         viewModel.startStopStopwatch()
     }
+
+    override fun onResetClicked() {
+        viewModel.reset()
+    }
 }

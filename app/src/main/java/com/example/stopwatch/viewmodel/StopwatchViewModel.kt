@@ -50,4 +50,13 @@ class StopwatchViewModel : ViewModel() {
         _btnText.value = R.string.start
         job.cancel()
     }
+
+    fun reset() {
+        _btnText.value = R.string.start
+        _timeElapsed.value = 0
+
+        if (::job.isInitialized && job.isActive) {
+            job.cancel()
+        }
+    }
 }
