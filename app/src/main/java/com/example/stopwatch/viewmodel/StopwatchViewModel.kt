@@ -19,6 +19,7 @@ class StopwatchViewModel : ViewModel() {
 
     init {
         _btnText.value = R.string.start
+        _timeElapsed.value = 0
     }
 
     fun startStopStopwatch() {
@@ -33,16 +34,14 @@ class StopwatchViewModel : ViewModel() {
         _btnText.value = R.string.stop
         job = Job()
         viewModelScope.launch {
-            var timeElapsed = 0
 
             while (true) {
 
                 withContext(Dispatchers.IO + job) {
                     delay(1_000)
-                    timeElapsed++
                 }
 
-                _timeElapsed.value = timeElapsed
+                _timeElapsed.value = _timeElapsed.value?.plus(1)
             }
         }
     }
