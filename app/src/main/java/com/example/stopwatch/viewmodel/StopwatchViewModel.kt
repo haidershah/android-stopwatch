@@ -33,7 +33,7 @@ class StopwatchViewModel(
             if (isStopwatchStarted) {
                 _timeElapsed.value =
                     ((System.currentTimeMillis() - savedTimeStopWatchClosed) / 1000) + savedTimeElapsed
-                startTimer()
+                startStopWatch()
             } else {
                 _timeElapsed.value = savedTimeElapsed
                 _btnText.value = R.string.start
@@ -47,13 +47,13 @@ class StopwatchViewModel(
 
     fun startStopStopwatch() {
         if (::job.isInitialized && job.isActive) {
-            stopTimer()
+            stopStopWatch()
         } else {
-            startTimer()
+            startStopWatch()
         }
     }
 
-    private fun startTimer() {
+    private fun startStopWatch() {
         _btnText.value = R.string.stop
         _isResetBtnEnabled.value = true
 
@@ -70,13 +70,13 @@ class StopwatchViewModel(
         }
     }
 
-    private fun stopTimer() {
+    private fun stopStopWatch() {
         _btnText.value = R.string.start
 
         job.cancel()
     }
 
-    fun reset() {
+    fun resetStopWatch() {
         _btnText.value = R.string.start
         _isResetBtnEnabled.value = false
         _timeElapsed.value = 0

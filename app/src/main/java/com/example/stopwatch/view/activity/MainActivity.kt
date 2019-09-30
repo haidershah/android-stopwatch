@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(), StopwatchListener {
     }
 
     override fun onResetClicked() {
-        viewModel.reset()
+        viewModel.resetStopWatch()
     }
 
     override fun onDestroy() {
