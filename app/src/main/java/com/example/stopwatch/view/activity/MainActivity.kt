@@ -1,4 +1,4 @@
-package com.example.stopwatch.view
+package com.example.stopwatch.view.activity
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
