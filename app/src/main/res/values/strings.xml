@@ -10,4 +10,5 @@
 
     <string name="saved_time_elapsed">saved_time_elapsed</string>
     <string name="is_stopwatch_started">is_stopwatch_started</string>
+    <string name="saved_time_stop_watch_closed">saved_time_stop_watch_closed</string>
 </resources>
