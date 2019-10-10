@@ -1,3 +1,7 @@
-# droid-stopwatch
+## Description
 
-An implementation of a Stopwatch using Kotlin Coroutines.
+A Stopwatch implementation.
+
+## Motivation
+
+To get familiar with Kotlin Coroutines.
